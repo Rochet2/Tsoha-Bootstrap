@@ -7,4 +7,4 @@ Yleisiä linkkejä:
 
 ## Työn aihe
 
-[linkki aiheeseen - Ostoskassi](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Ostoskassi.html) 
+[linkki aiheeseen - Elektroninen keittokirja](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Elektroninen_keittokirja.html) 
