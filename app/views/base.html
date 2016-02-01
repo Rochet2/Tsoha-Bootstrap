@@ -7,7 +7,7 @@
 
     <title>
       {% block title %}
-        Tietokantasovellus
+        Elektroninen keittokirja
       {% endblock %}
     </title>
 
@@ -33,13 +33,15 @@
             <span class="icon-bar"></span>
           </button>
           <!-- Sovelluksen nimi -->
-          <a class="navbar-brand" href="{{base_path}}">Tsoha Bootstrap</a>
+          <a class="navbar-brand" href="{{base_path}}">Elektroninen keittokirja</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
-            <li><a href="{{base_path}}">Etusivu</a></li>
+            <li><a href="{{base_path}}">Haku</a></li>
+            <li><a href="{{base_path}}/login">Kirjaudu</a></li>
+            <li><a href="{{base_path}}/indigrent_list">Ainekset</a></li>
           </ul>
         </div>
       </div>

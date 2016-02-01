@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muokkaa ainesta</h1>
+
+  <form>
+    <div class="form-group">
+      <label>nimi</label>
+      <input class="form-control" value="Ananas" type="text">
+    </div>
+    <div class="form-group">
+      <label>yksikköhinta sentteinä</label>
+      <input class="form-control" value="5000" type="number">
+    </div>
+    <div class="form-group">
+      <label>lisätietoa</label>
+      <textarea class="form-control">Tuore on parasta</textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+  </form>
+{% endblock %}

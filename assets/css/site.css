@@ -8,3 +8,20 @@
   max-width: 1200px;
   margin: 0px auto;
 }
+
+html {
+	background: url(http://i.imgur.com/J3h0Xed.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+body {
+	background-color: transparent !important;
+}
+
+label, h1 {
+	color: white !important;
+	text-shadow: 1px 1px 5px black !important;
+}
