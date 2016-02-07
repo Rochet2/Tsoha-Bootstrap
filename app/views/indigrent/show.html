@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Aines:</h1>
+<form>
+    <div class="form-group">
+        <label>nimi</label>
+        <input class="form-control" value="{{val.name}}" type="text" style="cursor: initial;" readonly>
+    </div>
+    <div class="form-group">
+        <label>yksikköhinta sentteinä</label>
+        <input class="form-control" value="{{val.price}}" type="text" style="cursor: initial;" readonly>
+    </div>
+    <div class="form-group">
+        <label>lisätietoa</label>
+        <textarea class="form-control" style="resize: none; cursor: initial;" readonly>{{val.info}}</textarea>
+    </div>
+</form>
+{% endblock %}

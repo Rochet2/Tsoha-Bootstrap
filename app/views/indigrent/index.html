@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Ainekset:</h1>
+
+  <p>
+    <a href="{{base_path}}/indigrent/new" class="btn btn-success">Lisää aines</a>
+  </p>
+
+  <div style="background: white; border-radius: 5px; padding: 15px;">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Nimi</td>
+          <td>Yksikköhinta sentteinä</td>
+          <td>Lisätietoa</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for v in all %}
+          <tr>
+            <td>{{v.name}}</td>
+            <td>{{v.price}}</td>
+            <td>{{v.info}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
