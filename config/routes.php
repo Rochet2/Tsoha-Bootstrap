@@ -25,15 +25,15 @@
     HelloWorldController::recipe_list();
   });
 
-  $routes->get('/indigrent/', function() {
+  $routes->get('/ingredient/', function() {
     IndigrentController::index();
   });
-  $routes->post('/indigrent/', function() {
+  $routes->post('/ingredient/', function() {
     IndigrentController::store();
   });
-  $routes->get('/indigrent/create/', function() {
+  $routes->get('/ingredient/create/', function() {
     IndigrentController::create();
   });
-  $routes->get('/indigrent/:id/', function($id) {
+  $routes->get('/ingredient/:id/', function($id) {
     IndigrentController::show($id);
   });

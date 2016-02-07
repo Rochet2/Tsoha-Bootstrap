@@ -1,50 +1,32 @@
 -- Lisää CREATE TABLE lauseet tähän tiedostoon
 
-CREATE TABLE "meal" (
-	"id" SERIAL PRIMARY KEY,
-	"name" TEXT NOT NULL,
-	"instructions" TEXT
-);
-
-CREATE TABLE "category" (
-	"id" SERIAL PRIMARY KEY,
-	"name" TEXT NOT NULL
-);
-
 CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
-	"username" TEXT NOT NULL,
+	"username" TEXT NOT NULL UNIQUE,
 	"password" TEXT NOT NULL
 );
 
-CREATE TABLE "indigrent" (
+CREATE TABLE "ingredient" (
 	"id" SERIAL PRIMARY KEY,
 	"name" TEXT NOT NULL,
-	"price" BIGINT,
-	"info" TEXT
+	"info" TEXT,
+	"user_id" INTEGER NOT NULL REFERENCES "user"(id) ON DELETE CASCADE
 );
 
 CREATE TABLE "recipe" (
 	"id" SERIAL PRIMARY KEY,
 	"name" TEXT NOT NULL,
 	"instructions" TEXT,
-	"category_id" INTEGER REFERENCES "category"(id) NOT NULL
+	"user_id" INTEGER NOT NULL REFERENCES "user"(id) ON DELETE CASCADE
 );
 
 CREATE TABLE "image" (
-	"recipe_id" INTEGER REFERENCES "recipe"(id) PRIMARY KEY,
+	"recipe_id" INTEGER REFERENCES "recipe"(id) ON DELETE CASCADE,
 	"url" TEXT NOT NULL
 );
 
-CREATE TABLE "recipe_indigrent" (
-	"recipe_id" INTEGER REFERENCES "recipe"(id),
-	"indigrent_id" INTEGER REFERENCES "indigrent"(id),
-	"amount" TEXT NOT NULL,
-	PRIMARY KEY("recipe_id", "indigrent_id")
-);
-
-CREATE TABLE "meal_recipe" (
-	"meal_id" INTEGER REFERENCES "meal"(id),
-	"recipe_id" INTEGER REFERENCES "recipe"(id),
-	PRIMARY KEY("meal_id", "recipe_id")
+CREATE TABLE "recipe_ingredient" (
+	"recipe_id" INTEGER REFERENCES "recipe"(id) ON DELETE CASCADE,
+	"ingredient_id" INTEGER REFERENCES "ingredient"(id) ON DELETE RESTRICT,
+	"amount" TEXT NOT NULL
 );

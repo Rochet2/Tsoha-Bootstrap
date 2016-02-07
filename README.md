@@ -14,9 +14,9 @@ Sovelluksen sivut:
 * [Etusivu](http://rimi.users.cs.helsinki.fi/tsoha/)
 * [Kirjautumissivu](http://rimi.users.cs.helsinki.fi/tsoha/login)
 * [Käyttäjän muokkaussivu](http://rimi.users.cs.helsinki.fi/tsoha/user_edit)
-* [Listaussivu](http://rimi.users.cs.helsinki.fi/tsoha/indigrent_list)
-* [Muokkaussivu](http://rimi.users.cs.helsinki.fi/tsoha/indigrent_edit)
-* [Tietosivu](http://rimi.users.cs.helsinki.fi/tsoha/indigrent_show)
+* [Listaussivu](http://rimi.users.cs.helsinki.fi/tsoha/ingredient_list)
+* [Muokkaussivu](http://rimi.users.cs.helsinki.fi/tsoha/ingredient_edit)
+* [Tietosivu](http://rimi.users.cs.helsinki.fi/tsoha/ingredient_show)
 
 ## Työn aihe
 

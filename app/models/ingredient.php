@@ -1,5 +1,5 @@
 <?php
-class Indigrent extends BaseModel {
+class Ingredient extends BaseModel {
     public $id, $name, $price, $info;
 
     public function __construct($attributes = null){
