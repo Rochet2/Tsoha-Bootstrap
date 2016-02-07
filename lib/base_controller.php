@@ -23,12 +23,20 @@
     public static function classname() {
         return static::$classname;
     }
+    public static function index_vars(&$vars) {
+    }
+    public static function show_vars(&$vars, $id) {
+    }
 
     public static function index() {
-        View::make(self::tablename().'/index.html', array('all' => self::call('all')));
+        $vars = array('all' => self::call('all'));
+        static::index_vars($vars);
+        View::make(self::tablename().'/index.html', $vars);
     }
     public static function show($id) {
-        View::make(self::tablename().'/show.html', array('val' => self::call('find', $id)));
+        $vars = array('val' => self::call('find', $id));
+        static::show_vars($vars, $id);
+        View::make(self::tablename().'/show.html', $vars);
     }
     public static function create() {
         View::make(self::tablename().'/create.html');

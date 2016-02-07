@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Käyttäjä:</h1>
+  <form>
+    <div class="form-group">
+      <label>nimi</label>
+      <input class="form-control" type="text" value="{{val.name}}" style="cursor: initial;" readonly>
+    </div>
+    <div class="form-group">
+      <label>käyttäjätunnus</label>
+      <input class="form-control" type="text" value="{{val.username}}" style="cursor: initial;" readonly>
+    </div>
+    <div class="form-group">
+      <label>reseptit</label>
+      <ul class="form-control" style="height: initial; padding: 15px; list-style: outside none none; cursor: initial;" readonly>
+        {% for v in recipes %}
+          <li><a href="{{base_path}}/recipe/{{v.id}}">{{v.name}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </form>
+{% endblock %}

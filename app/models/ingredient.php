@@ -1,6 +1,6 @@
 <?php
 class Ingredient extends BaseModel {
-    public $id, $name, $price, $info;
+    public $id, $name, $info;
 
     public function __construct($attributes = null){
         parent::__construct($attributes);

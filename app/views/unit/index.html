@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Ainekset:</h1>
+  <h1>Yksiköt:</h1>
 
   <p>
-    <a href="{{base_path}}/ingredient/create" class="btn btn-success">Lisää aines</a>
+    <a href="{{base_path}}/unit/create" class="btn btn-success">Lisää yksikkö</a>
   </p>
 
   <div style="background: white; border-radius: 5px; padding: 15px;">
     <table class="table">
       <thead>
         <tr>
-          <td>Nimi</td>
+          <td>Yksikkö</td>
           <td>Lisätietoa</td>
         </tr>
       </thead>
       <tbody>
         {% for v in all %}
           <tr>
-            <td><a href="{{base_path}}/ingredient/{{v.id}}">{{v.name}}</a></td>
+            <td><a href="{{base_path}}/unit/{{v.id}}">{{v.unit}}</a></td>
             <td>{{v.info}}</td>
           </tr>
         {% endfor %}

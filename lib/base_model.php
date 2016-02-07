@@ -32,6 +32,18 @@ class BaseModel{
     return strtolower(get_class(static::newself()));
   }
 
+  public static function find_by($field, $val) {
+    $query = DB::connection()->prepare('SELECT * FROM "'.static::tablename().'" WHERE '.$field.' = :'.$field);
+    $query->execute(array($field => $val));
+    $rows = $query->fetchAll();
+
+    $collection = array();
+    foreach($rows as $row){
+      $collection[] = static::newself($row);
+    }
+    return $collection;
+  }
+
   public static function find($id) {
     $query = DB::connection()->prepare('SELECT * FROM "'.static::tablename().'" WHERE id = :id LIMIT 1');
     $query->execute(array('id' => $id));

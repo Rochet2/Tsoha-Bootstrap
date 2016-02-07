@@ -3,7 +3,7 @@
   <h1>Ainekset:</h1>
 
   <p>
-    <a href="{{base_path}}/ingredient/create" class="btn btn-success">Lisää aines</a>
+    <a href="{{base_path}}/recipe/create" class="btn btn-success">Lisää resepti</a>
   </p>
 
   <div style="background: white; border-radius: 5px; padding: 15px;">
@@ -11,14 +11,14 @@
       <thead>
         <tr>
           <td>Nimi</td>
-          <td>Lisätietoa</td>
+          <td>Tekijä</td>
         </tr>
       </thead>
       <tbody>
-        {% for v in all %}
+        {% for v in recipe_user %}
           <tr>
-            <td><a href="{{base_path}}/ingredient/{{v.id}}">{{v.name}}</a></td>
-            <td>{{v.info}}</td>
+            <td><a href="{{base_path}}/recipe/{{v.recipe.id}}">{{v.recipe.name}}</a></td>
+            <td><a href="{{base_path}}/user/{{v.user.id}}">{{v.user.name}}</a></td>
           </tr>
         {% endfor %}
       </tbody>

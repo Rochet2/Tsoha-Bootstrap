@@ -1,24 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Ainekset:</h1>
-
-  <p>
-    <a href="{{base_path}}/ingredient/create" class="btn btn-success">Lisää aines</a>
-  </p>
-
+  <h1>Käyttäjät:</h1>
   <div style="background: white; border-radius: 5px; padding: 15px;">
     <table class="table">
       <thead>
         <tr>
           <td>Nimi</td>
-          <td>Lisätietoa</td>
+          <td>Käyttötunnus</td>
         </tr>
       </thead>
       <tbody>
         {% for v in all %}
           <tr>
-            <td><a href="{{base_path}}/ingredient/{{v.id}}">{{v.name}}</a></td>
-            <td>{{v.info}}</td>
+            <td><a href="{{base_path}}/user/{{v.id}}">{{v.name}}</a></td>
+            <td>{{v.username}}</td>
           </tr>
         {% endfor %}
       </tbody>
