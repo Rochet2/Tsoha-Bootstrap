@@ -1,9 +1,6 @@
 <?php
 
 class BaseModel{
-  // "protected"-attribuutti on käytössä vain luokan ja sen perivien luokkien sisällä
-  protected $validators;
-
   public function __construct($attributes = null) {
     if ($attributes == null)
       return;
@@ -18,13 +15,12 @@ class BaseModel{
   }
 
   public function errors(){
-    // Lisätään $errors muuttujaan kaikki virheilmoitukset taulukkona
     $errors = array();
-
-    foreach($this->validators as $validator){
-      // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+    foreach (get_object_vars($this) as $attribute => $value) {
+      if (method_exists($this, "validate_".$attribute)) {
+        $errors = array_merge($errors, $this->{"validate_".$attribute}());
+      }
     }
-
     return $errors;
   }
 
@@ -69,15 +65,27 @@ class BaseModel{
 
   public function save(){
     $attrs = get_object_vars($this);
-    // do not save validators nor id
+    // do not save id, should be new object
     unset($attrs['id']);
-    unset($attrs['validators']);
     $attrs_list_field = join(', ', array_keys($attrs));
     $attrs_list_value = ':'.join(', :', array_keys($attrs));
     $query = DB::connection()->prepare('INSERT INTO "'.static::tablename().'" ('.$attrs_list_field.') VALUES ('.$attrs_list_value.') RETURNING id');
     $query->execute($attrs);
     $row = $query->fetch();
     $this->id = $row['id'];
+  }
+
+  public function update(){
+    $attrs = get_object_vars($this);
+    $attrs_list_field = join(', ', array_keys($attrs));
+    $attrs_list_value = ':'.join(', :', array_keys($attrs));
+    $query = DB::connection()->prepare('UPDATE "'.static::tablename().'" ('.$attrs_list_field.') = ('.$attrs_list_value.') WHERE id = :id');
+    $query->execute($attrs);
+  }
+
+  public function delete(){
+    $query = DB::connection()->prepare('DELETE FROM "'.static::tablename().'" WHERE id = :id');
+    $query->execute(array("id" => $this->id));
   }
 
 }
