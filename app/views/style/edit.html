@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+  <h1>Edit {{val.name}}</h1>
+  <form method="post" action="{{base_path}}/style/{{val.id}}/edit">
+    <div class="form-group">
+      <label>Information</label>
+      <textarea class="form-control" name="info">{{forms.choose(attr.info, val.info)}}</textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+{% endblock %}

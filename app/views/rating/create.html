@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+  <h1>Create rating</h1>
+  <form method="post" action="{{base_path}}/rating/create">
+    <div class="form-group">
+      <label>Beer</label>
+      <select class="form-control" name="beer_id">
+        {% for v in beers %}
+          <option value="{{v.id}}">{{v.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Rating</label>
+      <input class="form-control" name="rating" type="number" value="{{attr.rating}}">
+    </div>
+    <div class="form-group">
+      <label>Information</label>
+      <textarea class="form-control" name="info">{{attr.info}}</textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+{% endblock %}

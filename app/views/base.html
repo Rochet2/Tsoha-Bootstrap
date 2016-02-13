@@ -7,7 +7,7 @@
 
     <title>
       {% block title %}
-        Elektroninen keittokirja
+        Ratebeer
       {% endblock %}
     </title>
 
@@ -33,19 +33,25 @@
             <span class="icon-bar"></span>
           </button>
           <!-- Sovelluksen nimi -->
-          <a class="navbar-brand" href="{{base_path}}">Elektroninen keittokirja</a>
+          <a class="navbar-brand" href="{{base_path}}">Ratebeer</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
-            <li><a href="{{base_path}}">Haku</a></li>
-            <li><a href="{{base_path}}/login">Kirjaudu</a></li>
-            <li><a href="{{base_path}}/user/create">Luo tunnus</a></li>
-            <li><a href="{{base_path}}/recipe">Reseptit</a></li>
-            <li><a href="{{base_path}}/ingredient">Ainekset</a></li>
-            <li><a href="{{base_path}}/unit">Yksiköt</a></li>
-            <li><a href="{{base_path}}/user">Käyttäjät</a></li>
+            <li><a href="{{base_path}}">Home</a></li>
+            <li><a href="{{base_path}}/brewery">Breweries</a></li>
+            <li><a href="{{base_path}}/style">Styles</a></li>
+            <li><a href="{{base_path}}/beer">Beers</a></li>
+            <li><a href="{{base_path}}/rating">Ratings</a></li>
+            <li><a href="{{base_path}}/user">Users</a></li>
+            {% if logged_user %}
+              <li><a href="{{base_path}}/user/{{logged_user.id}}">{{logged_user.name}}</a></li>
+              <li><a href="{{base_path}}/logout">Log out</a></li>
+            {% else %}
+              <li><a href="{{base_path}}/login">Sign in</a></li>
+              <li><a href="{{base_path}}/user/create">Sign up</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -55,6 +61,15 @@
       {% if message %}
         <div class="alert alert-success">
             {{message}}
+        </div>
+      {% endif %}
+      {% if errors %}
+        <div class="alert alert-success">
+          <ul>
+          {% for v in errors %}
+            <li>{{v}}</li>
+          {% endfor %}
+        </ul>
         </div>
       {% endif %}
       <!-- Dynaaminen sisältö tulee tähän -->

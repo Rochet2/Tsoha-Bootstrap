@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Aines:</h1>
+{% import "macros/forms.html" as forms %}
+  <h1>Style:</h1>
   <form>
     <div class="form-group">
-      <label>nimi</label>
+      <label>Name</label>
       <input class="form-control" value="{{val.name}}" type="text" style="cursor: initial;" readonly>
     </div>
     <div class="form-group">
-      <label>lisätietoa</label>
+      <label>Information</label>
       <textarea class="form-control" style="resize: none; cursor: initial;" readonly>{{val.info}}</textarea>
     </div>
   </form>
+  {{forms.bad_post_button("#{base_path}/style/#{val.id}/destroy", "Delete")}}
+  <a href="{{base_path}}/style/{{val.id}}/edit" class="btn btn-success">Edit</a>
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+  <h1>Beers:</h1>
+  <form>
+    <div class="form-group">
+      <label>Name</label>
+      <input class="form-control" type="text" style="cursor: initial;" value="{{val.name}}" readonly>
+    </div>
+    <div class="form-group">
+      <label>Style</label>
+      <a href="{{base_path}}/style/{{style.id}}" class="form-control" type="text" style="cursor: pointer;" readonly>{{style.name}}</a>
+    </div>
+    <div class="form-group">
+      <label>Brewery</label>
+      <a href="{{base_path}}/brewery/{{brewery.id}}" class="form-control" type="text" style="cursor: pointer;" readonly>{{brewery.name}}</a>
+    </div>
+    <div class="form-group">
+      <label>Information</label>
+      <textarea class="form-control" style="resize: none; cursor: initial;" readonly>{{val.info}}</textarea>
+    </div>
+  </form>
+  {{forms.bad_post_button("#{base_path}/beer/#{val.id}/destroy", "Delete")}}
+  <a href="{{base_path}}/beer/{{val.id}}/edit" class="btn btn-success">Edit</a>
+{% endblock %}

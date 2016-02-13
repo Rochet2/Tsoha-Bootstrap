@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+  <h1>Edit {{val.name}}</h1>
+  <form method="post" action="{{base_path}}/beer/{{val.id}}/edit">
+    <div class="form-group">
+      <label>Brewery</label>
+      <input class="form-control" type="text" value="{{brewery.name}}" readonly>
+    </div>
+    <div class="form-group">
+      <label>Style</label>
+      <select class="form-control" name="style_id">
+        {% for v in styles %}
+          <option value="{{v.id}}">{{v.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Information</label>
+      <textarea class="form-control" name="info">{{forms.choose(attr.info, val.info)}}</textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+{% endblock %}

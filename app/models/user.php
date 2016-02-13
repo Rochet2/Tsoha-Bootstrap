@@ -9,21 +9,6 @@ class User extends BaseModel {
         return new self($attributes);
     }
 
-    public static function login() {
-        View::make('user/login.html');
-    }
-    public static function handle_login() {
-        $params = $_POST;
-        $user = User::authenticate($params['username'], $params['password']);
-
-        if (!$user) {
-            Redirect::to('/user/login', array('errors' => array('Invalid username or password', 'data' => $params)));
-        } else {
-            $_SESSION['user'] = $user->id;
-            Redirect::to('/', array('message' => 'Welcome back ' . $user->name . '!'));
-        }
-    }
-
     public static function authenticate($username, $password) {
         $query = DB::connection()->prepare('SELECT * FROM "'.static::tablename().'" WHERE username = :username AND password = :password LIMIT 1');
         $query->execute(array('username' => $username, 'password' => $password));
@@ -32,5 +17,16 @@ class User extends BaseModel {
           return null;
         }
         return static::newself($row);
+    }
+
+    public function validate_username() {
+        $errors = array();
+        $query = DB::connection()->prepare('SELECT * FROM "'.static::tablename().'" WHERE username = :username and id != :id LIMIT 1');
+        $query->execute(array('username' => $this->username, 'id' => $this->id));
+        $row = $query->fetch();
+        if ($row) {
+          $errors[] = "username is already in use";
+        }
+        return $errors;
     }
 }

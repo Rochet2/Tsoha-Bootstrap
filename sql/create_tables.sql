@@ -7,33 +7,31 @@ CREATE TABLE "user" (
 	"name" TEXT NOT NULL
 );
 
-CREATE TABLE "ingredient" (
+CREATE TABLE "style" (
 	"id" SERIAL PRIMARY KEY,
 	"name" TEXT NOT NULL,
 	"info" TEXT
 );
 
-CREATE TABLE "unit" (
+CREATE TABLE "brewery" (
 	"id" SERIAL PRIMARY KEY,
-	"unit" TEXT NOT NULL,
+	"name" TEXT NOT NULL,
+	"founded" INTEGER NOT NULL,
 	"info" TEXT
 );
 
-CREATE TABLE "recipe" (
+CREATE TABLE "beer" (
 	"id" SERIAL PRIMARY KEY,
+	"brewery_id" INTEGER NOT NULL REFERENCES "brewery"(id) ON DELETE CASCADE,
+	"style_id" INTEGER NOT NULL REFERENCES "style"(id) ON DELETE CASCADE,
 	"name" TEXT NOT NULL,
-	"instructions" TEXT NOT NULL,
-	"user_id" INTEGER NOT NULL REFERENCES "user"(id) ON DELETE CASCADE
+	"info" TEXT
 );
 
-CREATE TABLE "image" (
-	"recipe_id" INTEGER NOT NULL REFERENCES "recipe"(id) ON DELETE CASCADE,
-	"url" TEXT NOT NULL
-);
-
-CREATE TABLE "recipe_ingredient" (
-	"recipe_id" INTEGER NOT NULL REFERENCES "recipe"(id) ON DELETE CASCADE,
-	"ingredient_id" INTEGER NOT NULL REFERENCES "ingredient"(id) ON DELETE RESTRICT,
-	"amount" FLOAT NOT NULL,
-	"unit_id" INTEGER NOT NULL REFERENCES "unit"(id) ON DELETE RESTRICT
+CREATE TABLE "rating" (
+	"id" SERIAL PRIMARY KEY,
+	"beer_id" INTEGER NOT NULL REFERENCES "beer"(id) ON DELETE CASCADE,
+	"user_id" INTEGER NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+	"rating" INTEGER NOT NULL,
+	"info" TEXT
 );

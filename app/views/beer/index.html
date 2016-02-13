@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "macros/forms.html" as forms %}
+  <h1>Beers:</h1>
+
+  <p>
+    <a href="{{base_path}}/beer/create" class="btn btn-success">Add beer</a>
+  </p>
+
+  <div style="background: white; border-radius: 5px; padding: 15px;">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Style</td>
+          <td>Brewery</td>
+          <td>Information</td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for v in beers %}
+          <tr>
+            <td><a href="{{base_path}}/beer/{{v.beer.id}}">{{v.beer.name}}</a></td>
+            <td><a href="{{base_path}}/style/{{v.style.id}}">{{v.style.name}}</a></td>
+            <td><a href="{{base_path}}/brewery/{{v.brewery.id}}">{{v.brewery.name}}</a></td>
+            <td>{{v.beer.info}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

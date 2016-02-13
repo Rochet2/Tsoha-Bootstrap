@@ -1,75 +1,144 @@
 <?php
 
   $routes->get('/', function() {
-    HelloWorldController::index();
+    BreweryController::index();
   });
   $routes->get('/sandbox/', function() {
     HelloWorldController::sandbox();
   });
+
   $routes->get('/login/', function() {
-    HelloWorldController::recipes_login();
+    UserController::login();
   });
-  $routes->get('/user_edit/', function() {
-    HelloWorldController::user_edit();
+  $routes->post('/login/', function() {
+    UserController::handle_login();
   });
-  $routes->get('/ingredient_show/', function() {
-    HelloWorldController::ingredient_show();
+  $routes->get('/user/login/', function() {
+    UserController::login();
   });
-  $routes->get('/ingredient_edit/', function() {
-    HelloWorldController::ingredient_edit();
-  });
-  $routes->get('/ingredient_list/', function() {
-    HelloWorldController::ingredient_list();
-  });
-  $routes->get('/recipe_list/', function() {
-    HelloWorldController::recipe_list();
+  $routes->post('/user/login/', function() {
+    UserController::handle_login();
   });
 
-  $routes->post('/ingredient/', function() {
-    IngredientController::store();
+  $routes->get('/logout/', function() {
+    UserController::logout();
   });
-  $routes->get('/ingredient/', function() {
-    IngredientController::index();
+  $routes->post('/logout/', function() {
+    UserController::logout();
   });
-  $routes->get('/ingredient/create/', function() {
-    IngredientController::create();
+  $routes->get('/user/logout/', function() {
+    UserController::logout();
   });
-  $routes->get('/ingredient/:id/', function($id) {
-    IngredientController::show($id);
+  $routes->post('/user/logout/', function() {
+    UserController::logout();
   });
 
-  $routes->post('/user/', function() {
-    UserController::store();
-  });
   $routes->get('/user/', function() {
     UserController::index();
   });
   $routes->get('/user/create/', function() {
     UserController::create();
   });
+  $routes->post('/user/create/', function() {
+    UserController::store();
+  });
   $routes->get('/user/:id/', function($id) {
     UserController::show($id);
   });
-
-  $routes->post('/unit/', function() {
-    UnitController::store();
+  $routes->get('/user/:id/edit/', function($id) {
+    UserController::edit($id);
   });
-  $routes->get('/unit/', function() {
-    UnitController::index();
+  $routes->post('/user/:id/edit/', function($id) {
+    UserController::update($id);
   });
-  $routes->get('/unit/create/', function() {
-    UnitController::create();
-  });
-  $routes->get('/unit/:id/', function($id) {
-    UnitController::show($id);
+  $routes->post('/user/:id/destroy/', function($id) {
+    UserController::destroy($id);
   });
 
-  $routes->get('/recipe/', function() {
-    RecipeController::index();
+  $routes->get('/brewery/', function() {
+    BreweryController::index();
   });
-  $routes->get('/recipe/create/', function() {
-    RecipeController::create();
+  $routes->get('/brewery/create/', function() {
+    BreweryController::create();
   });
-  $routes->get('/recipe/:id/', function($id) {
-    RecipeController::show($id);
+  $routes->post('/brewery/create/', function() {
+    BreweryController::store();
+  });
+  $routes->get('/brewery/:id/', function($id) {
+    BreweryController::show($id);
+  });
+  $routes->get('/brewery/:id/edit/', function($id) {
+    BreweryController::edit($id);
+  });
+  $routes->post('/brewery/:id/edit/', function($id) {
+    BreweryController::update($id);
+  });
+  $routes->post('/brewery/:id/destroy/', function($id) {
+    BreweryController::destroy($id);
+  });
+
+  $routes->get('/style/', function() {
+    StyleController::index();
+  });
+  $routes->get('/style/create/', function() {
+    StyleController::create();
+  });
+  $routes->post('/style/create/', function() {
+    StyleController::store();
+  });
+  $routes->get('/style/:id/', function($id) {
+    StyleController::show($id);
+  });
+  $routes->get('/style/:id/edit/', function($id) {
+    StyleController::edit($id);
+  });
+  $routes->post('/style/:id/edit/', function($id) {
+    StyleController::update($id);
+  });
+  $routes->post('/style/:id/destroy/', function($id) {
+    StyleController::destroy($id);
+  });
+
+  $routes->get('/beer/', function() {
+    BeerController::index();
+  });
+  $routes->get('/beer/create/', function() {
+    BeerController::create();
+  });
+  $routes->post('/beer/create/', function() {
+    BeerController::store();
+  });
+  $routes->get('/beer/:id/', function($id) {
+    BeerController::show($id);
+  });
+  $routes->get('/beer/:id/edit/', function($id) {
+    BeerController::edit($id);
+  });
+  $routes->post('/beer/:id/edit/', function($id) {
+    BeerController::update($id);
+  });
+  $routes->post('/beer/:id/destroy/', function($id) {
+    BeerController::destroy($id);
+  });
+
+  $routes->get('/rating/', function() {
+    RatingController::index();
+  });
+  $routes->get('/rating/create/', function() {
+    RatingController::create();
+  });
+  $routes->post('/rating/create/', function() {
+    RatingController::store();
+  });
+  $routes->get('/rating/:id/', function($id) {
+    RatingController::show($id);
+  });
+  $routes->get('/rating/:id/edit/', function($id) {
+    RatingController::edit($id);
+  });
+  $routes->post('/rating/:id/edit/', function($id) {
+    RatingController::update($id);
+  });
+  $routes->post('/rating/:id/destroy/', function($id) {
+    RatingController::destroy($id);
   });

@@ -1,23 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Ainekset:</h1>
+{% import "macros/forms.html" as forms %}
+  <h1>Breweries:</h1>
 
   <p>
-    <a href="{{base_path}}/ingredient/create" class="btn btn-success">Lisää aines</a>
+    <a href="{{base_path}}/brewery/create" class="btn btn-success">Add brewery</a>
   </p>
 
   <div style="background: white; border-radius: 5px; padding: 15px;">
     <table class="table">
       <thead>
         <tr>
-          <td>Nimi</td>
-          <td>Lisätietoa</td>
+          <td>Name</td>
+          <td>Founded</td>
+          <td>Information</td>
         </tr>
       </thead>
       <tbody>
         {% for v in all %}
           <tr>
-            <td><a href="{{base_path}}/ingredient/{{v.id}}">{{v.name}}</a></td>
+            <td><a href="{{base_path}}/brewery/{{v.id}}">{{v.name}}</a></td>
+            <td>{{v.founded}}</td>
             <td>{{v.info}}</td>
           </tr>
         {% endfor %}

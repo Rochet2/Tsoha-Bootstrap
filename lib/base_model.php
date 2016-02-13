@@ -2,6 +2,10 @@
 
 class BaseModel{
   public function __construct($attributes = null) {
+    $this->set_attributes($attributes);
+  }
+
+  public function set_attributes($attributes = null) {
     if ($attributes == null)
       return;
     // Käydään attribuutit läpi
@@ -12,6 +16,16 @@ class BaseModel{
         $this->{$attribute} = $attributes[$attribute];
       }
     }
+  }
+
+  public function validate_name() {
+      $errors = array();
+      if (!is_string($this->name)) {
+          $errors[] = "name must be a string";
+      } elseif (strlen($this->name) < 1) {
+          $errors[] = "name can not be empty";
+      }
+      return $errors;
   }
 
   public function errors(){
@@ -77,10 +91,14 @@ class BaseModel{
 
   public function update(){
     $attrs = get_object_vars($this);
-    $attrs_list_field = join(', ', array_keys($attrs));
-    $attrs_list_value = ':'.join(', :', array_keys($attrs));
-    $query = DB::connection()->prepare('UPDATE "'.static::tablename().'" ('.$attrs_list_field.') = ('.$attrs_list_value.') WHERE id = :id');
-    $query->execute($attrs);
+    unset($attrs['id']);
+    $fields = array();
+    foreach (array_keys($attrs) as $name) {
+      $fields[] = $name.' = :'.$name;
+    }
+    $fields = join(', ', $fields);
+    $query = DB::connection()->prepare('UPDATE "'.static::tablename().'" SET '.$fields.' WHERE id = :id');
+    $query->execute(get_object_vars($this));
   }
 
   public function delete(){

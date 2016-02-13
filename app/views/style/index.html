@@ -1,23 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Yksiköt:</h1>
+{% import "macros/forms.html" as forms %}
+  <h1>Styles:</h1>
 
   <p>
-    <a href="{{base_path}}/unit/create" class="btn btn-success">Lisää yksikkö</a>
+    <a href="{{base_path}}/style/create" class="btn btn-success">Add style</a>
   </p>
 
   <div style="background: white; border-radius: 5px; padding: 15px;">
     <table class="table">
       <thead>
         <tr>
-          <td>Yksikkö</td>
-          <td>Lisätietoa</td>
+          <td>Name</td>
+          <td>Information</td>
         </tr>
       </thead>
       <tbody>
         {% for v in all %}
           <tr>
-            <td><a href="{{base_path}}/unit/{{v.id}}">{{v.unit}}</a></td>
+            <td><a href="{{base_path}}/style/{{v.id}}">{{v.name}}</a></td>
             <td>{{v.info}}</td>
           </tr>
         {% endfor %}

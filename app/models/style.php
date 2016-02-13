@@ -1,6 +1,6 @@
 <?php
-class Image extends BaseModel {
-    public $recipe_id, $url;
+class Style extends BaseModel {
+    public $id, $name, $info;
 
     public function __construct($attributes = null){
         parent::__construct($attributes);
