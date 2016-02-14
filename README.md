@@ -17,6 +17,10 @@ Sovelluksen sivut:
 * [Kaljat](http://rimi.users.cs.helsinki.fi/tsoha/beer)
 * [Tyylit](http://rimi.users.cs.helsinki.fi/tsoha/style)
 
+Käyttötunnus kokeilijalle (ellei joku hönö poistanut niitä):
+* user: teemu
+* pass: koiv
+
 ## Työn aihe
 
 Ratebeer - oluen arviointisivusto
