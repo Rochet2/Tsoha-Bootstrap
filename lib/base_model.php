@@ -22,7 +22,7 @@ class BaseModel{
       $errors = array();
       if (!is_string($this->name)) {
           $errors[] = "name must be a string";
-      } elseif (strlen($this->name) < 1) {
+      } elseif (strlen(trim($this->name)) < 1) {
           $errors[] = "name can not be empty";
       }
       return $errors;

@@ -96,6 +96,8 @@
         $_class = self::classname();
         $params = $_POST;
         unset($params['id']);
+        if (isset($params['name']))
+            $params['name'] = trim($params['name']);
         static::edit_stored_params($params);
         $v = new $_class($params);
 
@@ -118,6 +120,8 @@
             Redirect::to('/'.self::tablename().'/', array('errors' => array("invalid id"), 'attr' => $params));
             return;
         }
+        if (isset($params['name']))
+            $params['name'] = trim($params['name']);
         static::edit_update_params($params);
         $v->set_attributes($params);
 

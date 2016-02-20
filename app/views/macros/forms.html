@@ -10,3 +10,6 @@
 {% endmacro %}
 {% macro choose(a, b) %}{% if a %}{{a}}{% else %}{{b}}{% endif %}
 {% endmacro %}
+{% macro selected(curr_id, expected_id) %}{% if curr_id == expected_id %}selected{% endif %}
+{% endmacro %}
+ 

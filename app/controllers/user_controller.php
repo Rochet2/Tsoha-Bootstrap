@@ -9,6 +9,10 @@ class UserController extends BaseController {
         }
     }
 
+    public static function can_create() {
+        return !static::get_user_logged_in();
+    }
+
     public static function can_edit($id) {
         return static::is_logged_user($id);
     }

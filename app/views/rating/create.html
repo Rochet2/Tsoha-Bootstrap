@@ -7,7 +7,7 @@
       <label>Beer</label>
       <select class="form-control" name="beer_id">
         {% for v in beers %}
-          <option value="{{v.id}}">{{v.name}}</option>
+          <option value="{{v.id}}" forms.selected(v.id, attr.beer_id)>{{v.name}}</option>
         {% endfor %}
       </select>
     </div>
