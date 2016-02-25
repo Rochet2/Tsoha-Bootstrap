@@ -31,7 +31,7 @@ class UserController extends BaseController {
         $user = User::authenticate($params['username'], $params['password']);
 
         if (!$user) {
-            Redirect::to('/user/login', array('errors' => array('Invalid username or password', 'data' => $params)));
+            Redirect::to('/user/login', array('errors' => array('Invalid username or password'), 'attr' => $_POST));
         } else {
             $_SESSION['user'] = $user->id;
             Redirect::to('/', array('message' => 'Welcome back ' . $user->name . '!'));
@@ -41,5 +41,11 @@ class UserController extends BaseController {
     public static function edit_update_params(&$vars) {
         unset($vars['username']);
         unset($vars['password']);
+    }
+
+    public static function edit_stored_params(&$vars) {
+        if (is_string($vars['username'])) {
+            $vars['username'] = trim($vars['username']);
+        }
     }
 }

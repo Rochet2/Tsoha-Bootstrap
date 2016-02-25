@@ -106,7 +106,7 @@
             $v->save();
             Redirect::to('/'.self::tablename().'/'.$v->id, array('message' => self::classname().' added!'));
         } else {
-            Redirect::to('/'.self::tablename().'/create', array('errors' => $errors, 'attr' => $params));
+            Redirect::to('/'.self::tablename().'/create', array('errors' => $errors, 'attr' => $_POST));
         }
     }
     public static function update($id) {
@@ -117,7 +117,7 @@
 
         $v = self::call('find', $id);
         if (!$v) {
-            Redirect::to('/'.self::tablename().'/', array('errors' => array("invalid id"), 'attr' => $params));
+            Redirect::to('/'.self::tablename().'/', array('errors' => array("invalid id"), 'attr' => $_POST));
             return;
         }
         if (isset($params['name']))
@@ -130,7 +130,7 @@
             $v->update();
             Redirect::to('/'.self::tablename().'/'.$v->id, array('message' => self::classname().' updated!'));
         } else {
-            Redirect::to('/'.self::tablename().'/'.$id.'/edit', array('errors' => $errors, 'attr' => $params));
+            Redirect::to('/'.self::tablename().'/'.$id.'/edit', array('errors' => $errors, 'attr' => $_POST));
         }
     }
 

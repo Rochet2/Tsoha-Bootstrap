@@ -15,6 +15,8 @@ class Brewery extends BaseModel {
             $errors[] = "foundation year is not an integer";
         } elseif ($this->founded > date("Y")) {
             $errors[] = "brewery can not be founded in the future";
+        } elseif ($this->founded < 1042) {
+            $errors[] = "brewery can not be founded before the oldest known brewery (year 1042)";
         }
         return $errors;
     }
