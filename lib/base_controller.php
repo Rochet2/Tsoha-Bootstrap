@@ -75,7 +75,7 @@
             if (static::get_user_logged_in())
                 Redirect::to(null, array('message' => "You do not have permission to do that"));
             else
-                Redirect::to("/user/login", array('message' => "You need to be logged in"));
+                Redirect::to("/user/login", array('message' => "You need to be logged in to do that"));
             return false;
         }
         return true;
@@ -85,7 +85,7 @@
             if (static::get_user_logged_in())
                 Redirect::to(null, array('message' => "You do not have permission to do that"));
             else
-                Redirect::to("/user/login", array('message' => "You need to be logged in"));
+                Redirect::to("/user/login", array('message' => "You need to be logged in to do that"));
             return false;
         }
         return true;
@@ -95,7 +95,7 @@
             if (static::get_user_logged_in())
                 Redirect::to(null, array('message' => "You do not have permission to do that"));
             else
-                Redirect::to("/user/login", array('message' => "You need to be logged in"));
+                Redirect::to("/user/login", array('message' => "You need to be logged in to do that"));
             return false;
         }
         return true;
