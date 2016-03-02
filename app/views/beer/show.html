@@ -19,6 +19,22 @@
       <label>Information</label>
       <textarea class="form-control" style="resize: none; cursor: initial;" readonly>{{val.info}}</textarea>
     </div>
+    {% if average %}
+    <div class="form-group">
+      <label>Rating average</label>
+      <input class="form-control" type="text" style="cursor: pointer;" value="{{average}}" readonly>
+    </div>
+    {% endif %}
+    {% if ratings|length > 0 %}
+    <div class="form-group">
+      <label>Ratings</label>
+      <ul class="form-control" style="height: initial; padding: 15px; list-style: outside none none; cursor: initial;" readonly>
+        {% for v in ratings %}
+          <li><a href="{{base_path}}/rating/{{v.rating.id}}">{{v.user.name}}: {{v.rating.rating}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
   </form>
   {{forms.bad_post_button("#{base_path}/beer/#{val.id}/destroy", "Delete")}}
   <a href="{{base_path}}/beer/{{val.id}}/edit" class="btn btn-success">Edit</a>

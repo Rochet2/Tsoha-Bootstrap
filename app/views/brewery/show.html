@@ -15,6 +15,16 @@
       <label>Information</label>
       <textarea class="form-control" style="resize: none; cursor: initial;" readonly>{{val.info}}</textarea>
     </div>
+    {% if beers|length > 0 %}
+    <div class="form-group">
+      <label>Beers</label>
+      <ul class="form-control" style="height: initial; padding: 15px; list-style: outside none none; cursor: initial;" readonly>
+        {% for v in beers %}
+          <li><a href="{{base_path}}/beer/{{v.id}}">{{v.name}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
   </form>
   {{forms.bad_post_button("#{base_path}/brewery/#{val.id}/destroy", "Delete")}}
   <a href="{{base_path}}/brewery/{{val.id}}/edit" class="btn btn-success">Edit</a>

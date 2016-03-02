@@ -23,6 +23,18 @@ class BeerController extends BaseController {
     public static function show_vars(&$vars, $id) {
         $vars['brewery'] = Brewery::find($vars['val']->brewery_id);
         $vars['style'] = Style::find($vars['val']->style_id);
+        $ratings = Rating::find_by('beer_id', $id);
+        if (count($ratings) > 0) {
+            $sum = 0.0;
+            foreach ($ratings as $r) {
+                $sum += $r->rating;
+            }
+            $vars['average'] = $sum / count($ratings);
+        }
+        $vars['ratings'] = array();
+        foreach ($ratings as $k => $v) {
+            $vars['ratings'][] = array('rating' => $v, 'user' => User::find($v->user_id));
+        }
     }
 
     public static function create_vars(&$vars) {

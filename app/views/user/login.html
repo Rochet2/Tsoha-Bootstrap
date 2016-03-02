@@ -2,6 +2,9 @@
 {% block content %}
 {% import "macros/forms.html" as forms %}
   <h1>Log in</h1>
+  <div style="background: white none repeat scroll 0% 0%; border-radius: 5px; padding: 15px; margin: 10px 0px 15px;">
+  <p>Singing in allows you to create and edit breweries, beers, ratings and styles.</p>
+</div>
   <form method="post" action="{{base_path}}/user/login">
     <div class="form-group">
       <label>Username</label>

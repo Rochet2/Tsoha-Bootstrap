@@ -11,14 +11,16 @@
       <label>Username</label>
       <input class="form-control" type="text" value="{{val.username}}" style="cursor: initial;" readonly>
     </div>
+    {% if ratings|length > 0 %}
     <div class="form-group">
       <label>Ratings</label>
       <ul class="form-control" style="height: initial; padding: 15px; list-style: outside none none; cursor: initial;" readonly>
         {% for v in ratings %}
-          <li><a href="{{base_path}}/rating/{{v.rating.id}}">{{v.beer.name}} {{v.rating.rating}}</a></li>
+          <li><a href="{{base_path}}/rating/{{v.rating.id}}">{{v.beer.name}}: {{v.rating.rating}}</a></li>
         {% endfor %}
       </ul>
     </div>
+    {% endif %}
   </form>
   {% if logged_user and val.id == logged_user.id %}
     {{forms.bad_post_button("#{base_path}/user/#{logged_user.id}/destroy", "Delete")}}
